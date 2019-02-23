@@ -1,22 +1,20 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './Input.scss';
 
-class Input extends Component { 
-    state = {
-        value: ''
-    };
-
-    onChangeHandler = (e)=> {this.setState({value: e.target.value});}
-
-    render() { 
-        return ( 
-            <input 
-                value={this.state.value}
-                onChange={this.onChangeHandler}
-                placeholder="Search by book title or author" 
-                type="text" />
-        );
+const Input = (props) => {
+    const { setValue } = props;
+    const onChangeHandler = (e) => {
+        setValue(e.target.value);
+        console.log(`on change value: ${e.target.value}`)
     }
+    return ( 
+        <input 
+            className='sm-txt'
+            value={props.val ? props.val : ''}
+            onChange={onChangeHandler}
+            placeholder="Search by book title or author" 
+            type="text" />
+    );
 }
 
 export default Input;
