@@ -1,8 +1,22 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './Input.scss';
 
-const input = () => {
-    return <input placeholder="Search by book title or author" type="text" />;
-};
+class Input extends Component { 
+    state = {
+        value: ''
+    };
 
-export default input;
+    onChangeHandler = (e)=> {this.setState({value: e.target.value});}
+
+    render() { 
+        return ( 
+            <input 
+                value={this.state.value}
+                onChange={this.onChangeHandler}
+                placeholder="Search by book title or author" 
+                type="text" />
+        );
+    }
+}
+
+export default Input;
