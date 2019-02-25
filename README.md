@@ -1,4 +1,5 @@
 # Book Finder
+![Application Snapshot Preview](https://github.com/sanchezl391/Book-Finder/tree/master/src/Assets/app-preview.PNG)
 ## Features
 - Search for books using author or book title
 - Fetches data from Google Books API
