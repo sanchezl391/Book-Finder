@@ -7,6 +7,12 @@
     h3{margin-bottom:.5em;}
     h4{margin:0;}
     max-width: 160px;
+
+    a{
+        margin-top:1em;
+        &:hover{cursor: pointer;}
+        &.gray-txt {color: #b2bec3;}
+    }
 }
 
 @mixin sides{
@@ -18,6 +24,7 @@
     width:100%;
     height:100%;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .body{
@@ -30,6 +37,7 @@
     transform-style:preserve-3d;
     &:hover{transform: rotateY(180deg) translate3d(0,0,0);}
     transition: transform 1s;
+    
     .front{
         img{
             width:100%;
@@ -38,6 +46,8 @@
         @include sides;
     }
     .back{
+        display: flex;
+        flex-direction: column;
         padding:.5em;
         @include sides;
         transform: rotateY(180deg);

@@ -5,7 +5,7 @@ import Book from './Book/Book';
 
 const bookList = (props) => {
     const books = [...props.books];
-    console.log(books);
+    // console.log(books);
     let content;
     if (books.length === 0) 
         content = (
@@ -15,7 +15,7 @@ const bookList = (props) => {
         );
     else 
         content = books.map((book) => {
-            console.log(book);
+            // console.log(book);
             return <Book key={book.id} book={book} />
         }            
         );

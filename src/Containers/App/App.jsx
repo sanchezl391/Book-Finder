@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import './App.scss';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faIgloo } from '@fortawesome/free-solid-svg-icons';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import Input from '../../Components/Input/Input';
 import BookList from '../../Components/BookList/BookList';
 import {isEquivalent} from '../../Helpers/lib';
 
-library.add(faIgloo);
+library.add(faExternalLinkAlt);
 
 
 class App extends Component {
@@ -27,7 +26,6 @@ class App extends Component {
         try {
             const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchTerms}`);
             const data = await response.json();
-            // console.log(data);
             return data.items;
         } catch (e) {
             return 'failure';
@@ -37,12 +35,17 @@ class App extends Component {
     componentDidUpdate(p, prevState) {
         const prevStateBooks = prevState.bookList;
 
-        if(prevState.inputValue !== this.state.inputValue){
-            this.getBooks().then((books) => {
-                if(books && !isEquivalent(prevStateBooks, books)) 
-                    this.setState({bookList: books});
-            });   
-        }         
+        console.log(`Inside Component did update`, `prevInput: ${prevState.inputValue}`, `newInput: ${this.state.inputValue}`);
+        if(prevState.inputValue){
+            if(this.state.inputValue !== prevState.inputValue && this.state.inputValue){
+                this.getBooks().then((books) => {
+                    if(books && !isEquivalent(prevStateBooks, books)) 
+                        this.setState({bookList: books});
+                }); 
+            } else if(!this.state.inputValue) {
+                this.setState({bookList: []});                     
+            }   
+        } 
     }
 
     render() {
