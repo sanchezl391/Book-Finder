@@ -14,8 +14,10 @@ const bookList = (props) => {
             </div>
         );
     else 
-        content = books.map((book) => 
-            <Book key={book.id} book={book} />
+        content = books.map((book) => {
+            console.log(book);
+            return <Book key={book.id} book={book} />
+        }            
         );
 
     return (
